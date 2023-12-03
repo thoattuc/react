@@ -4,9 +4,17 @@ import {useDispatch} from "react-redux";
 import {Notyf} from "notyf";
 import {setLogin} from "../redux/loginSlice";
 import "../styles/login.css";
-
+import {useEffect} from "react";
 
 function Login() {
+    useEffect(() => {
+        document.querySelector('.img_btn').addEventListener(
+            'click',
+            function () {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+    })
+
     const url = "http://127.0.0.1:8000/api/";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -72,7 +80,7 @@ function Login() {
                             <span>Password</span>
                             <input type="password" onChange={e => setPassword(e.target.value)}/>
                         </label>
-                        <a href={}><span className="forgot-pass">Quên mật khẩu</span></a>
+                        <p className="forgot-pass"><a href={"/forgot"}>Quên mật khẩu</a></p>
                         <button type="button" className="submit">Đăng nhập</button>
                     </div>
 

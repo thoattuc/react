@@ -5,12 +5,14 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import NotFound from "./pages/NotFound";
 import Education from "./pages/Education";
 import Login from "./pages/Login";
+import Test from "./pages/Test";
 
 function App() {
     const user = useSelector((state) => state.loginSlice.user);
     return (
         <div className="App">
             <Routes>
+                <Route path="/test" element={<Test/>}/>
                 <Route path="/" element={<Login/>}/>
                 {
                     user.email && <Route path='/education' element={<Education/>}/>
