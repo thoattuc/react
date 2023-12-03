@@ -1,0 +1,13 @@
+ Name.jsx
+ Auth
+    index.js:
+    import thư viện: React, ReactDOM, Provider, bootstrap
+    create Redux Store
+    render ứng dụng react
+
+    App.js:
+    import thư viện, component..
+    create user , sử dụng useSelector lấy thông tin người dùng từ loginSlice
+    render routers
+
+

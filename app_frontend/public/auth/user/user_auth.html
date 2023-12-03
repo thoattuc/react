@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Niam Auth</title>
+</head>
+
+<body>
+
+
+<p class="tip"></p>
+
+<div class="cont">
+    <div class="form sign-in">
+        <h2>Niam Auth</h2>
+        <label><span>Email</span><input type="email"/></label>
+        <label><span>Password</span><input type="password"/></label>
+        <!--        <p class="forgot-pass">Quên mật khẩu</p>-->
+        <button type="button" class="submit">Đăng nhập</button>
+    </div>
+
+
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img_text m--up">
+                <h2>Bạn muốn tạo tài khoản mới ?</h2>
+            </div>
+
+            <div class="img_text m--in">
+                <h2>Đã có tài khoản!</h2>
+            </div>
+
+            <div class="img_btn">
+                <span class="m--up">Đăng ký</span>
+                <span class="m--in">Đăng nhập</span>
+            </div>
+        </div>
+
+        <div class="form sign-up">
+            <h2>Tạo tài khoản mới:</h2>
+            <label><span>Name</span><input type="text"/></label>
+            <label><span>Email</span><input type="email"/></label>
+            <label><span>Pasword</span><input type="password"/></label>
+            <button type="button" class="submit">Đăng ký</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    document.querySelector('.img_btn').addEventListener('click', function () {
+        document.querySelector('.cont').classList.toggle('s--signup');
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
