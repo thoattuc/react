@@ -16,23 +16,48 @@ function Login() {
     })
 
     const url = "http://127.0.0.1:8000/api/";
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const [newName, setNewName] = useState("");
+    const [newEmail, setNewEmail] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    // const checkEmail = (e) => {
+    //     if (e.match(/(.+)@(gmail+)\.com/i)) {
+    //         setEmail(e);
+    //     }
+    // }
     const dispatch = useDispatch();
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const notyf = new Notyf({ // Hiển thị thông báo Toast trong ứng dụng
+    // Hiển thị thông báo Toast trong ứng dụng
+    const notyf = new Notyf({
         position: {
             x: "right",
-            y: "top"
+            y: "top",
         },
-        type: [
+        types: [
             {
-                type: "ìno",
-                background: "green",
-                icon: false
+                type: 'success',
+                background: 'green',
+                icon: {
+                    className: 'fas fa-check',
+                    tagName: 'span',
+                    color: 'white'
+                }
+            },
+            {
+                type: 'error',
+                background: 'red',
+                icon: {
+                    className: 'fas fa-times',
+                    tagName: 'span',
+                    color: 'white'
+                }
             },
         ],
     });
+
 
     const checkLogin = () => {
         if (email === "") {
@@ -66,6 +91,39 @@ function Login() {
         }
     };
 
+    const register = () => {
+        if (newEmail === "") {
+            notyf.open({
+                type: "error",
+                message: "Thiếu email đăng ký",
+            });
+        } else {
+            axios({
+                method: "POST",
+                url: url + "register",
+                data: {
+                    name: newName,
+                    email: newEmail,
+                    password: newPassword
+                }
+            }).then((res) => {
+                console.log(res.data);
+                if (res.data.check === true) {
+                    const user = {
+                        email: email,
+                        token: res.data.token
+                    };
+                    dispatch(setLogin(user));
+                    notyf.open({
+                        type: "success",
+                        message: "Đăng ký thành công"
+                    });
+                    setLoggedIn(true);
+                }
+            });
+        }
+    }
+
     return (
         <>
             {isLoggedIn === false && (
@@ -74,14 +132,20 @@ function Login() {
                         <h2>Niam Auth</h2>
                         <label>
                             <span>Email</span>
-                            <input type="email" onChange={e => setEmail(e.target.value)}/>
+                            <input type="text"
+                                   value={email}
+                                   className="form-control"
+                                   onChange={(e) => setEmail(e.target.value)}/>
                         </label>
                         <label>
                             <span>Password</span>
-                            <input type="password" onChange={e => setPassword(e.target.value)}/>
+                            <input type="password"
+                                   value={password}
+                                   className="form-control"
+                                   onChange={(e) => setPassword(e.target.value)}/>
                         </label>
                         <p className="forgot-pass"><a href={"/forgot"}>Quên mật khẩu</a></p>
-                        <button type="button" className="submit">Đăng nhập</button>
+                        <button type="button" className="submit" id="submitLoginBtn" onClick={checkLogin}>Đăng nhập</button>
                     </div>
 
 
@@ -103,10 +167,16 @@ function Login() {
 
                         <div className="form sign-up">
                             <h2>Tạo tài khoản mới:</h2>
-                            <label><span>Name</span><input type="text"/></label>
-                            <label><span>Email</span><input type="email"/></label>
-                            <label><span>Pasword</span><input type="password"/></label>
-                            <button type="button" className="submit">Đăng ký</button>
+                            <label><span>Name</span><input type="text" name="name" className="form-control" required
+                                                           onChange={e => setNewName(e.target.value)}
+                            /></label>
+                            <label><span>Email</span><input id="email" type="email" name="email" className="form-control" required
+                                                            onChange={e => setNewEmail(e.target.value)}
+                            /></label>
+                            <label><span>Password</span><input id="password" type="password" name="password" className="form-control" required
+                                                              onChange={e => setNewPassword(e.target.value)}
+                            /></label>
+                            <button type="button" className="submit" id="submitSignupBtn" onClick={register}>Đăng ký</button>
                         </div>
                     </div>
                 </div>
